@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="estilo2.css" />
+  </head>
+
+  <body>
+    <section class="container mt-3">
+      <div class="card-deck">
+        <div class="card"  onclick="Liga()">
+          <img
+            class="card-img-top img-fluid"
+            src="/img/temp1.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body text-card-center">
+            <h5 class="card-title">Agregar Liga</h5>
+          </div>
+        </div>
+
+
+
+
+
+        <div class="card" onclick="Temporada()">
+          <img
+            class="card-img-top img-fluid"
+            style="height: 195px"
+            src="/img/temp.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body text-card-center"   >
+            <h5 class="card-title">Agregar Temporada</h5>
+          </div>
+        </div>
+        <div class="card" onclick="Equipo()">
+          <img
+            class="card-img-top img-fluid"
+            style="height: 195px"
+            src="/img/equipos.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body text-card-center">
+            <h5 class="card-title">Agregar Equipo</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="card-deck">
+        <div class="card" onClick="Jornada()">
+          <img
+          class="card-img-top img-fluid"
+          max-width: 100%;
+              height: auto;
+          src="/img/xdd.jpg"
+          alt="Card image cap"
+          />
+          <div class="card-body text-card-center">
+            <h5 class="card-title">Agregar Jornada</h5>
+          </div>
+        </div>
+        <div class="card" onclick="PartidosJornada()">
+          <img
+            class="card-img-top img-fluid"
+            
+              max-width: 100%;
+              height: auto;
+            src="/img/lol.jpg"
+            alt="Card image cap"
+          />
+          <div class="card-body text-card-center">
+            <h5 class="card-title">Agregar Partidos Por Jornada</h5>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      async function Liga() {
+        const { value: file } = await Swal.fire({
+          title: "Selecciona el Logo de la liga",
+            html: `
+            <input type="text" id="password"   class="swal2-input" placeholder="Nombre de la Liga">
+          <input type="file" style="width: 58%;font-size: 15px;" class="swal2-input" placeholder="Logo del Equipo">`, 
+          inputAttributes: {
+            accept: "image/*",
+            "aria-label": "",
+          },
+        });
+
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            Swal.fire({    
+              imageUrl: e.target.result,
+              imageAlt:"",
+            });
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+      
+
+      function Temporada() {
+        Swal.fire({
+          title: "Temporada",
+          html: `
+          <h5># de la Temporada</h5>
+          <input type="text" style="width:58%; margin: 1px;" id="registro"    class="swal2-input" placeholder="2021">
+          <h5>Nombre de la Temporada</h5>
+          <input type="text"  style="width:58%; margin: 1px;" id="registro"  class="swal2-input" placeholder="Apertura 2021">
+          <h5>Fecha inicio</h5>
+          <input type="date" style="width: 58%; margin: 1px;" id="date"    class="swal2-input" placeholder="Fecha inicio">
+          <h5>Fecha fin</h5>
+          <input type="date" style="width: 58%; margin: 1px;" id="date"    class="swal2-input" placeholder="Fecha Terminacion">`,
+          confirmButtonText: "Enviar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password = Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          Swal.fire(
+            `
+            Bienvenido: ${result.value.login}
+            Contraseña: ${result.value.password} 
+          `.trim()
+          );
+        });
+      }
+      
+      function Equipo() {
+        Swal.fire({
+          title: "Equipo",
+          html: `
+          <h5># de la Temporada</h5>
+          <input type="text"style="width:58%; margin: 8px;" id="registro"  class="swal2-input" placeholder="">
+          <h5 style="margin:6px;">Nombre del Equipo</h5>
+          <input type="text"style="width:58%; margin: 1px;" id="password"   class="swal2-input" placeholder="">
+          <h5>Logo del Equipo</h5>
+          <input type="file" style="width: 58% ;font-size: 15px;" class="swal2-input" placeholder="">`,
+          confirmButtonText: "Enviar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password = Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          Swal.fire(
+            `
+            Bienvenido: ${result.value.login}
+            Contraseña: ${result.value.password} 
+          `.trim()
+          );
+        });
+      }
+      function Jornada() {
+        Swal.fire({
+          title: "Partidos por jornada",
+          html: `
+          <h5># de la Temporada</h5>
+          <input type="text" id="registro"  style="width:58%; margin: 1px;"      class="swal2-input" placeholder="">
+          <h5>Nombre de la Jornada</h5>
+          <input type="text" id="registro"  style="width:58%; margin: 1px;"      class="swal2-input" placeholder="">
+          <h5>Fecha inicio</h5>
+          <input type="date" style="width: 58%; margin: 1px;" id="password"    class="swal2-input" placeholder="Fecha inicio">
+          <h5>Fecha fin</h5>
+          <input type="date" style="width: 58%; margin: 1px;" id="password"    class="swal2-input" placeholder="Fecha Terminacion">`,
+          confirmButtonText: "Enviar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password = Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          Swal.fire(
+            `
+            Bienvenido: ${result.value.login}
+            Contraseña: ${result.value.password} 
+          `.trim()
+          );
+        });
+      }
+      function PartidosJornada() {
+        Swal.fire({
+          title: "Partidos por jornada",
+          html: `
+          <h5># de la Temporada</h5>
+          <input type="text" id="registro"   style="width: 58%; margin: 1px;"     class="swal2-input" placeholder="# de la Temporada">
+          <h5>ID Equipo Local</h5>
+          <input type="text" id="registro"   style="width: 58%; margin: 1px;" class="swal2-input" placeholder="">
+          <h5>ID Equipo Visitante</h5>
+          <input type="text" id="password"  style="width: 58%; margin: 1px;"  class="swal2-input" placeholder="">
+          <h5># de Jornada Original</h5>
+          <input type="text" id="password"  style="width: 58%; margin: 1px;"  class="swal2-input" placeholder="">`,
+          confirmButtonText: "Enviar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password = Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          Swal.fire(
+            `
+            Bienvenido: ${result.value.login}
+            Contraseña: ${result.value.password} 
+          `.trim()
+          );
+        });
+      }
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </body>
+</html>

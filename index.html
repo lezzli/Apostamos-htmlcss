@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apostamos</title>
+    <link rel="stylesheet" href="estilo.css" />
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&display=swap");
+  </style>
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="middle">APOSTAMOS.COM.MX</h1>
+        <nav class="menu middle">
+          <p class="ov-btn-slide-right">INICIO</p>
+          <p class="ov-btn-slide-right">POSTA DEPORTES</p>
+          <p class="ov-btn-slide-right">POSTA.COM.MX</p>
+          <p class="ov-btn-slide-right" onclick="iniciarSesion()">INICIAR SESIÓN</p>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <section class="banner">
+        <img src="/img/apostamos.png" alt="" />
+        <div class="contenedor">
+          <h1 class="">PARTICIPA GRATIS</h1>
+          <br />
+          <a onclick="Register()" class="btn">Registrate</a>
+        </div>
+      </section>
+    </main>
+    <section class="banner2">
+      <!--    <img src="/img/balon.jpg" alt=""> -->
+    </section>
+    <script>
+      function iniciarSesion() {
+        Swal.fire({
+          title: "Iniciar sesión",
+          html: `<input type="text" id="login" class="swal2-input" placeholder="Usuario">
+              <input type="password" id="password" class="swal2-input" placeholder="contraseña">
+              `,
+
+          confirmButtonText: "Ingresar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password =
+              Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          localStorage.setItem("usuario", result.value.login);
+
+          window.location.href = "http://127.0.0.1:5500/index2.html"
+        });
+      }
+
+      function Register() {
+        Swal.fire({
+          title: "Registro",
+          html: `
+          <input type="text" id="registro"        class="swal2-input" placeholder="Nombre">
+          <input type="text" id="registro"        class="swal2-input" placeholder="Usuario">
+          <input type="email" id="correo"          class="swal2-input" placeholder="Correo electronico">
+          <input type="password" id="password"    class="swal2-input" placeholder="contraseña">
+          <input type="password" id="password"    class="swal2-input" placeholder="Confirme contraseña">
+          `,
+          confirmButtonText: "Registrar",
+          focusConfirm: false,
+          preConfirm: () => {
+            const login = Swal.getPopup().querySelector("#login").value;
+            const password =
+              Swal.getPopup().querySelector("#password").value;
+            if (!login || !password) {
+              Swal.showValidationMessage(
+                `Porfavor introduzca un usuario y contraseña`
+              );
+            }
+            return { login: login, password: password };
+          },
+        }).then((result) => {
+          Swal.fire(
+            `
+            Bienvenido: ${result.value.login}
+            Contraseña: ${result.value.password} 
+          `.trim()
+          );
+        });
+      }
+    </script>
+    <script src="funcion.js"></script>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+
+.container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 65px;
+    background:black;
+    color:#fff;
+    text-align: left;
+}
+.menu{
+    display: flex;
+    justify-content: space-around;
+}
+
+.middle{
+    flex: 1 1 50%;
+}
+a{
+    color: white;
+    text-decoration: dashed;
+}
+img{
+    width: 100%;
+    height: 100%;
+   
+  
+}
+h1{
+    padding: 15px;
+    margin: 0px 34px;
+   
+}
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background:black;
+    color:#fff;
+    margin-top: -5px;
+}
+.btn{
+    margin: 10px 600px;
+    padding: 10px;
+    font-size: 21px;
+    color: white;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    background: #a3152d;
+    border-radius: 7px;
+    border: 2px solid #c1a62e;
+    transition: .5s;
+    font-family: 'Roboto', sans-serif; 
+    cursor: pointer;
+}
+
+.btn:hover{
+    background:  #c1a62e ;
+}
+.btn{
+    margin: 13px 600px;
+    font-size: 21px;
+    padding: 11px 44px;
+    
+}
+
+.text-card-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ov-btn-slide-right {
+    background: black; /* color de fondo */
+    color: black(206, 69, 69); /* color de fuente */
+    border: 1px solid black; /* tamaño y color de borde */
+    padding: 16px 20px;
+    border-radius: 5px; /* redondear bordes */
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    display: inline-block;
+    font-family: 'Roboto', sans-serif;
+    cursor: pointer;
+  }
+  .ov-btn-slide-right:hover {
+    color: white; /* color de fuente hover */
+  }
+  .ov-btn-slide-right::after {
+    content: "";
+    background: #c1a62e; /* color de fondo hover */
+    position: absolute;
+    z-index: -1;
+    padding: 16px 20px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    right: -100%;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+    font-family: 'Roboto', sans-serif;
+  }
+  .ov-btn-slide-right:hover::after {
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-transition: all 0.35s;
+    transition: all 0.35s;
+  }
+  
